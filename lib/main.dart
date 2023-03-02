@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           home: EasySplashScreen(
             durationInSeconds: 4,
             navigator: const Home(),
-            backgroundColor: primaryColor,
+            backgroundColor: const Color.fromARGB(255, 99, 172, 160),
             logo: Image.asset(
               "assets/images/logo.png",
             ),

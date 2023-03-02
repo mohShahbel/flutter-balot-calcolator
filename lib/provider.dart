@@ -51,6 +51,7 @@ class MyProvider with ChangeNotifier {
     if (playOneController.text.isEmpty && playTowController.text.isEmpty) {
       showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (context) {
           return CupertinoAlertDialog(
             title: const Text("لا توجد قيم"),
@@ -58,14 +59,17 @@ class MyProvider with ChangeNotifier {
             actions: [
               CupertinoDialogAction(
                 child: const Text("حسناً"),
-                onPressed: () => Navigator.of(context).pop(),
+                onPressed: () {
+                  playOneController.clear();
+                  playTowController.clear();
+                  Navigator.of(context).pop();
+                },
               )
             ],
           );
         },
       );
-      playOneController.clear();
-      playTowController.clear();
+
       return;
     }
 
@@ -74,6 +78,7 @@ class MyProvider with ChangeNotifier {
         int.parse(playTowController.text) < 0) {
       showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (context) {
           return CupertinoAlertDialog(
             title: const Text("لا يمكن ادخال قيم عكسية"),
@@ -81,7 +86,11 @@ class MyProvider with ChangeNotifier {
             actions: [
               CupertinoDialogAction(
                 child: const Text("حسناً"),
-                onPressed: () => Navigator.of(context).pop(),
+                onPressed: () {
+                  playOneController.clear();
+                  playTowController.clear();
+                  Navigator.of(context).pop();
+                },
               )
             ],
           );
